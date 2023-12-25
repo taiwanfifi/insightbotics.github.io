@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>使用 Hugo 與 GitHub 建立個人博客的完整指南 - My New Hugo Site</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="My New Hugo Site" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">My New Hugo Site</div>
+					
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">使用 Hugo 與 GitHub 建立個人博客的完整指南</h1>
+			
+		</header>
+		<div class="content post__content clearfix">
+			<p>這是我關於如何使用 Hugo 和 GitHub 建立和部署靜態博客的教學，參考了這個非常有用的 <a href="https://www.youtube.com/watch?v=LIFvgrRxdt4&amp;t=2s">YouTube 影片</a>。身為台大電機系的學生，我發現這個過程既有趣又富有教育意義。以下是我按步驟整理的內容：</p>
+<h2 id="建立-hugo-博客">建立 Hugo 博客</h2>
+<h3 id="建立兩個-github-儲存庫">建立兩個 GitHub 儲存庫</h3>
+<p>首先，我們需要在 GitHub 上建立兩個儲存庫：</p>
+<ol>
+<li><strong>源代碼儲存庫</strong>（例如 <code>blog</code>）用於存放 Hugo 的源代碼和博文。</li>
+<li><strong>靜態內容儲存庫</strong>（例如 <code>username.github.io</code>），用於存放 Hugo 生成的靜態網站內容。</li>
+</ol>
+<h3 id="在本地建立-hugo-網站">在本地建立 Hugo 網站</h3>
+<p>接下來，我們在本地電腦上複製第一個儲存庫，並建立一個新的 Hugo 網站：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/yourusername/blog.git
+</span></span><span style="display:flex;"><span>cd blog
+</span></span><span style="display:flex;"><span>hugo new site insightbotics-blog
+</span></span></code></pre></div><h3 id="選擇並添加-hugo-主題">選擇並添加 Hugo 主題</h3>
+<p>我在 Hugo 的官方主題庫中挑選了一個稱為 Mainroad 的主題，並將其作為子模組添加到我的 Hugo 網站中：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd insightbotics-blog
+</span></span><span style="display:flex;"><span>cd themes
+</span></span><span style="display:flex;"><span>git submodule add https://github.com/vimux/mainroad.git
+</span></span></code></pre></div><h3 id="配置-hugo-網站">配置 Hugo 網站</h3>
+<p>編輯 <code>config.toml</code> 文件，設置主題和網站的其他相關配置。</p>
+<h3 id="建立和預覽內容">建立和預覽內容</h3>
+<p>添加新的博文並在本地預覽網站：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new posts/your-post-name.md
+</span></span><span style="display:flex;"><span>hugo server
+</span></span></code></pre></div><h2 id="部署-hugo-博客">部署 Hugo 博客</h2>
+<h3 id="將靜態內容儲存庫添加為子模組">將靜態內容儲存庫添加為子模組</h3>
+<p>我們需要將第二個儲存庫作為子模組添加到 <code>public</code> 目錄下，這個目錄是 Hugo 生成靜態文件的地方：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git submodule add -b main git@github.com:yourusername/yourusername.github.io.git public
+</span></span></code></pre></div><h3 id="生成靜態網站並推送到-github">生成靜態網站並推送到 GitHub</h3>
+<p>運行 Hugo 來生成靜態內容，然後將其推送到靜態內容儲存庫：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo -t mainroad
+</span></span><span style="display:flex;"><span>cd public
+</span></span><span style="display:flex;"><span>git add .
+</span></span><span style="display:flex;"><span>git commit -m <span style="color:#e6db74">&#34;Initial commit&#34;</span>
+</span></span><span style="display:flex;"><span>git push origin main
+</span></span></code></pre></div><h3 id="在-github-pages-啟用網站部署">在 GitHub Pages 啟用網站部署</h3>
+<p>在 GitHub 上的靜態內容儲存庫的設置中，確保從 <code>main</code> 分支部署網站。</p>
+<h2 id="結語">結語</h2>
+<p>按照這些步驟，您就可以輕鬆地在 GitHub 上部署自己的 Hugo 博客了。這個過程不僅簡單，而且可以讓您完全控制自己的內容和網站的外觀。希望這篇教學對您有所幫助！</p>
+<p>祝您博客建設愉快！</p>
+
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2023 My New Hugo Site.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
